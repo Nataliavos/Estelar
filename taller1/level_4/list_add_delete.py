@@ -1,4 +1,6 @@
-'''Agregar y eliminar frutas.'''
+''' Lista de frutas
+    Agregar y eliminar frutas
+    Buscar elemento '''
 
 # creamos una lista con frutas
 fruits = ["mandarina", "fresa", "piña", "mango"]

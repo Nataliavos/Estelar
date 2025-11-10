@@ -1,4 +1,6 @@
-usuario = input("ingresa tu nombre")
-edad = input("ingresa tu edad")
+#hay que definir variables que guarden el nombre y la edad, y despues se imprimen
 
-print("tu nombre es",usuario,"tienes",edad)
+usuario = input("ingresa tu nombre ")
+edad = int(input("ingresa tu edad "))
+
+print ("hola, te llamas",usuario,"y tienes",edad,"años")

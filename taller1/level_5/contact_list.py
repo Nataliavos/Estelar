@@ -11,10 +11,28 @@ def createContact():
     # Pedimos al usuario el número del contacto
     num = input("Ingrese número-->")
 
+
+
+
+
+
+
+
     # Validamos que el número sea solo numérico
     while not num.isnumeric():
         print("Dato inválido. Ingresa solo número")
         num = input("Ingrese número->")
+    num = int(num)
+
+
+
+
+
+
+
+
+
+
 
     # Solicitamos nombre y apellido
     name = input("Ingresa el nombre-->")

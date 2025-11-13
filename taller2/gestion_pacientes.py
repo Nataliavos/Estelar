@@ -19,7 +19,7 @@
 #      "historial": ["hipertensión", "diabetes"]
 #      }
 #      ]
-pacientes = []
+pacientes = [] 
 
 # ------- FUNCIÓN 4: ELIMINAR PACIENTES -------
 def eliminar_pacientes():

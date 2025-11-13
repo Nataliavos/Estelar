@@ -14,47 +14,47 @@ pacientes = []
 
 def agregar_pacientes():
     print('---------- Agregar Pacientes ----------')
-    while True:
-    
-            # Validacion de datos numericos y de texto
-            identificacion = (input('ingresar numero de identificacion: '))
-            while not identificacion.isnumeric():
-                print('Error, ingrese un numero valido')
-                identificacion = input('ingresar numero de identificacion: ')
-            identificacion = int(identificacion)    
-
+    while True: # validacion de datos numericos y de texto para el id reciva solo numeros
+            try:
+                identificacion = int(input('INGRESE EL NUMERO DE IDENTIFICACIO DEL PACIENTE: '))
+                break # salimos del bucle si la entrada es valida
+            except ValueError:
+                print('Error, ingrese un numero valido') #print mensaje de error
 
            # Validacion de datos numericos y de texto
+    nombre = input("INGRESE EL NOMBRE DEL PACIENTE: ").lower().strip()
+    apellido = input("INGRESE EL APELLIDO DEL PACIENTE: ").lower().strip()
 
-            nombre = input("Ingrese el nombre del paciente: ").lower().strip()
-            apellido = input("Ingrese el apellido del paciente: ").lower().strip()
-
+    while True: # validacion de datos numericos y de texto para el id reciva solo numeros
+            try:
+                edad = int(input('INGRESE LA EDAD: ')) # ingresamos datos
+                break # salimos del bucle si la entrada es valida
+            except ValueError:
+               print('Error, ingrese un numero valido') #imprimimos mensaje de error
                 
-            edad =input('ingresar edad: ')
-            while not edad.isnumeric():
-                print('Error, ingrese un numero valido')
-                edad = input('ingresar edad: ')
-            edad = int(edad)
-        
 
-            genero = input('ingresar genero: ').lower().strip() # ingresamos datos
-            diagnostico = input('ingresar diagnostico: ').lower().strip() # ingresamos datos
-            historial = input('ingresar historial medico: ').lower().strip() # ingresamos datos
-            break
+        
+    genero = input('iINGRESE GENERO: ').lower().strip() # ingresamos datos
+
+    diagnostico = input('INGRESE EL DIAGNOSTICO: ').lower().strip() # ingresamos datos
+
+    historial = input('INGRESE EL HISTORIAL: ').lower().strip() # ingresamos datos
+   
 
            
     
-    datos_paciente = {
-                        'id': identificacion,
-                        'nombre': nombre,
-                        'apellido': apellido,
-                        'edad': edad,
-                        'genero': genero,
-                        'diagnostico': diagnostico,
-                        'historial': historial
-                    }
+    datos_paciente ={
+                    'id': identificacion, # identificacion del paciente
+                    'nombre': nombre, # nombre del paciente
+                    'apellido': apellido,# apellido del paciente
+                    'edad': edad, # edad del paciente
+                    'genero': genero,# genero del paciente
+                    'diagnostico': diagnostico, # diagnostico del paciente
+                    'historial': historial # historial del paciente
+                 }
+                 
     pacientes.append(datos_paciente)
-
+    print('------------------PACIENTE AGREGADO EXITOSAMENTE-------------------')
     for paciente in pacientes:
         print(f'{paciente["id"]}|{paciente["nombre"]}|{paciente["apellido"]}|{paciente["edad"]}|{paciente["genero"]}|{paciente["diagnostico"]}|{paciente["historial"]}')
 

@@ -51,13 +51,16 @@ def agregar_pacientes():
                  
     pacientes.append(datos_paciente)
     print('------------------PACIENTE AGREGADO EXITOSAMENTE-------------------')
+    azul = "\033[34m" # color azul
+    reset = "\033[0m" # reset color
     # recorro la lista de pacientes y muestro sus datos
     for paciente in pacientes:
+        print(f'{azul}{"ID":<15}{"NOMBRE":<15}{"APELLIDO":<15}{"EDAD":<15}{"GENERO":<15}{"DIAGNOSTICO":<15}{"HISTORIAL":<15}{reset}')  # Completar con los campos necesarios
         # imprimo los datos de cada paciente
-        print(f'{paciente["id"]:<15}|{paciente["nombre"]:<15}|{paciente["apellido"]:<15}|{paciente["edad"]:<15}|{paciente["genero"]:<15}|{paciente["diagnostico"]:<15}|{paciente["historial"]:<15}')
+        print(f'{paciente["id"]:<15}{paciente["nombre"]:<15}{paciente["apellido"]:<15}{paciente["edad"]:<15}{paciente["genero"]:<15}{paciente["diagnostico"]:<15}{paciente["historial"]:<15}')
     contador_pacientes() # llamo a la funcion contador pacientes para contar los pacientes agregados
 
-
+agregar_pacientes() # llamo a la funcion agregar pacientes para iniciar el programa
 
 def generar_reportes(): # creamos la funcion generar reportes
     print('------------------Reporte de pacientes:-------------------')
@@ -78,6 +81,7 @@ def generar_reportes(): # creamos la funcion generar reportes
     print("2: PACIENTES CON DIAGNOSTICO ESPECIFICO. ")
     print("3: PACIENTES POR GENERO. ")
     print('4: TOTAL DE PACIENTES REGISTRADOS.')
+    print("5: volver. ")
     info = input("SELECIONE EL NUMERO DE LA OPCION QUE DECEA HACER: ")
         
 
@@ -97,3 +101,16 @@ def generar_reportes(): # creamos la funcion generar reportes
         volver = input("Presione S para VOLVER...") # pausa para volver al menu principal
         if volver.lower() == "s":
             generar_reportes() # vuelvo a seccion generar reportes
+
+    if info == "2":
+        diagnostico = input('ingrese el diagnostico que desea buscar: ').lower().strip()
+        print(f'pacientes con diaagnostico de {diagnostico}:')
+        for paciente in pacientes:
+            if paciente["diagnostico"] == diagnostico:
+             print("\033[34m" + f'{"ID":<10}{"NOMBRE":<15}{"APELLIDO":<15}{"EDAD":<10}{"GENERO":<15}{"DIAGNOSTICO":<15}{"HISTORIAL":<15}' + "\033[0m")  # Completar con los campos necesarios
+             print(f'{paciente["id"]:<10}{paciente["nombre"]:<15}{paciente["apellido"]:<15}{paciente["edad"]:<10}{paciente["genero"]:<15}{paciente["diagnostico"]:<15}{paciente["historial"]:<15}')  # Completar con los campos necesarios
+
+    if info == "5":
+     agregar_pacientes()
+
+

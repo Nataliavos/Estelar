@@ -1,21 +1,17 @@
 pacientes = []
-"""datos_paciente = {
-    "id": "",
-    "nombre": "",
-    "apellido": "",
-    "edad": "",
-    "genero": "",
-    "diagnostico": "",
-    "historial": []
-    }
-"""
+
+contador = 0
+def contador_pacientes():
+    global contador
+    contador += 1
 
 
 
 def agregar_pacientes():
     print('---------- Agregar Pacientes ----------')
-    while True: # validacion de datos numericos y de texto para el id reciva solo numeros
-            try:
+    while True: 
+            
+            try:#validacion de datos numericos y de texto para el id reciva solo numeros
                 identificacion = int(input('INGRESE EL NUMERO DE IDENTIFICACIO DEL PACIENTE: '))
                 break # salimos del bucle si la entrada es valida
             except ValueError:
@@ -34,7 +30,7 @@ def agregar_pacientes():
                 
 
         
-    genero = input('iINGRESE GENERO: ').lower().strip() # ingresamos datos
+    genero = input('INGRESE GENERO: ').lower().strip() # ingresamos datos
 
     diagnostico = input('INGRESE EL DIAGNOSTICO: ').lower().strip() # ingresamos datos
 
@@ -55,44 +51,49 @@ def agregar_pacientes():
                  
     pacientes.append(datos_paciente)
     print('------------------PACIENTE AGREGADO EXITOSAMENTE-------------------')
+    # recorro la lista de pacientes y muestro sus datos
     for paciente in pacientes:
-        print(f'{paciente["id"]}|{paciente["nombre"]}|{paciente["apellido"]}|{paciente["edad"]}|{paciente["genero"]}|{paciente["diagnostico"]}|{paciente["historial"]}')
+        # imprimo los datos de cada paciente
+        print(f'{paciente["id"]:<15}|{paciente["nombre"]:<15}|{paciente["apellido"]:<15}|{paciente["edad"]:<15}|{paciente["genero"]:<15}|{paciente["diagnostico"]:<15}|{paciente["historial"]:<15}')
+    contador_pacientes() # llamo a la funcion contador pacientes para contar los pacientes agregados
 
-agregar_pacientes()
 
 
+def generar_reportes(): # creamos la funcion generar reportes
+    print('------------------Reporte de pacientes:-------------------')
+    azul = "\033[34m" # color azul
+    reset = "\033[0m" # reset color
+    #imprrimo encabezado de la tabla
+    print(f'{azul}{"ID":<10}{"NOMBRE":<15}{"APELLIDO":<15}{"EDAD":<10}{"GENERO":<15}{"DIAGNOSTICO":<15}{"HISTORIAL":<15}{reset}')  # Completar con los campos necesarios
+    
+    print(f"{azul}{'-'*90}{reset}") # linea extra de separacion
 
-while True:
-    # mostramos el menú de opciones
-    print("===== GESTIÓN DE PACIENTES =====")
-    print("1) Agregar Paciente\n2) Buscar Pacientes\n3) Actualizar Datos\n4) Eliminar Pacientes \n5) Reportes \n6) Salir")
+    for paciente in pacientes: # recorro la lista de pacientes  
+        # imprimo los datos de cada paciente
+     print(f'{paciente["id"]:<10}{paciente["nombre"]:<15}{paciente["apellido"]:<15}{paciente["edad"]:<10}{paciente["genero"]:<15}{paciente["diagnostico"]:<15}{paciente["historial"]:<15}')  # Completar con los campos necesarios
 
-    # solicitamos la opción al usuario
-    option=input("\nIngresa una opción ->").strip()
-
-    # validamos que la entrada sea numérica y esté dentro del rango de opciones
-    if not option.isnumeric() or option not in ["1", "2", "3", "4", "5", "6"]:
-        print("Por favor ingrese una opción válida.")
-        continue # volvemos a pedir el dato
-
-    # convertimos la entrada a entero
-    option = int(option)
-
-    # usamos match para las opciones del menú. Definimos las funciones fuera del match para mayor claridad.
-    # ejecutamos la función correspondiente según la opción seleccionada
-    match option:
+    # creo las ociones de reporte   
+    print("-------------------------------opciones de reporte----------------------------")
+    print("1: PACIENTES MAYORES DE 60 AÑOS.")
+    print("2: PACIENTES CON DIAGNOSTICO ESPECIFICO. ")
+    print("3: PACIENTES POR GENERO. ")
+    print('4: TOTAL DE PACIENTES REGISTRADOS.')
+    info = input("SELECIONE EL NUMERO DE LA OPCION QUE DECEA HACER: ")
         
-        case 1:
-            agregar_pacientes() #Camilo
-        case 2:
-            buscar_pacientes() #Lucas
-        case 3:
-            actualizar_datos() #Vero
-        case 4:
-            eliminar_pacientes() #Natalia
-        case 5:
-            generar_reportes() # 
-        case 6:
-            print("¡Hasta la próxima!")
-            break # salimos del bucle y terminamos el programa
-          
+
+    if info == "1":
+        print("PACIENTES MAYORES DE 60 AÑOS:")
+        for paciente in pacientes: # recorro la lista de pacientes
+            if paciente["edad"]>60: # Valido si la edad es mayor a 60
+             # imprimo el encabezado de la tabla
+             print("\033[34m" + f'{"ID":<10}{"NOMBRE":<15}{"APELLIDO":<15}{"EDAD":<10}{"GENERO":<15}{"DIAGNOSTICO":<15}{"HISTORIAL":<15}' + "\033[0m")  # Completar con los campos necesarios
+           # imprimo los datos de cada paciente que cumple la condicion
+             print(f'{paciente["id"]:<10}{paciente["nombre"]:<15}{paciente["apellido"]:<15}{paciente["edad"]:<10}{paciente["genero"]:<15}{paciente["diagnostico"]:<15}{paciente["historial"]:<15}')  # Completar con los campos necesarios
+    
+    if info == "4": # opcion 4 total de pacientes registrados
+        print('-----------------------------TOTAL DE PACIENTES REGISTRADOS:------------------------')
+
+        print(f'el total de pacientes es: {contador}') # imprimo el total de pacientes registrados
+        volver = input("Presione S para VOLVER...") # pausa para volver al menu principal
+        if volver.lower() == "s":
+            generar_reportes() # vuelvo a seccion generar reportes

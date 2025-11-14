@@ -279,7 +279,7 @@ def generar_reportes(): # creamos la funcion generar reportes
     if info == "4": # opcion 4 total de pacientes registrados
         print('-----------------------------TOTAL DE PACIENTES REGISTRADOS:------------------------')
 
-        print(f'el total de pacientes es: {contador}') # imprimo el total de pacientes registrados
+        print(f'el total de pacientes es: {len(pacientes)}') # imprimo el total de pacientes registrados
         volver = input("Presione S para VOLVER...") # pausa para volver al menu principal
         if volver.lower() == "s":
             generar_reportes() # vuelvo a seccion generar reportes
